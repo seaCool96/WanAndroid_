@@ -5,8 +5,5 @@ package com.example.kotlin.bean
  * date : 2019/11/20 0020 16:33
  * description :
  */
-class BaseResult<T> {
-    var errorCode: Int = 0
-    var errorMsg: String? = null
-    var data: DataBean<T>? = null
-}
+data class BaseResult<T>(val errorCode: Int, val errorMsg: String?, val data: DataBean<T>)
+

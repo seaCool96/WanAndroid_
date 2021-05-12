@@ -1,15 +1,20 @@
-package com.example.kotlin.view
+package com.example.kotlin.ui.act
 
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.kotlin.R
 import com.example.kotlin.adapter.MyPageAdapter
-import java.util.*
+import com.example.kotlin.base.BaseVmActivity
+import com.example.kotlin.ui.fragment.ClassflyFragment
+import com.example.kotlin.ui.fragment.HomeFragment
+import com.example.kotlin.ui.fragment.OtherFragment
+import com.example.kotlin.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseVmActivity<MainViewModel>() {
 
     private lateinit var viewPager: ViewPager
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -30,9 +35,11 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun layoutId(): Int {
+        return R.layout.activity_main
+    }
+
+    override fun initView(savedInstanceState: Bundle?) {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         viewPager = findViewById(R.id.viewPager)
@@ -58,5 +65,24 @@ class MainActivity : AppCompatActivity() {
                 navView.menu.getItem(position).isChecked = true
             }
         })
+    }
+
+    override fun createObserver() {
+
+    }
+
+    override fun onNetworkStateChanged(netState: Boolean) {
+        super.onNetworkStateChanged(netState)
+        if (netState) {
+            Toast.makeText(applicationContext, "我特么终于有网了啊!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(applicationContext, "我特么怎么断网了!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun showLoading(message: String) {
+    }
+
+    override fun dismissLoading() {
     }
 }

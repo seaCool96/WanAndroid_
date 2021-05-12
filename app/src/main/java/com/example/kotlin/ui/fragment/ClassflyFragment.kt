@@ -1,4 +1,4 @@
-package com.example.kotlin.view
+package com.example.kotlin.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,16 +12,16 @@ import com.example.kotlin.R
  *  date : 2019/11/15 0015 17:05
  *  description :
  */
-class HomeFragment : Fragment() {
+class ClassflyFragment : Fragment() {
 
     companion object {
-        fun getInstance(): HomeFragment {
-            return HomeFragment()
+        fun getInstance(): ClassflyFragment {
+            return ClassflyFragment()
         }
     }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(R.layout.fragment_classify, container, false)
     }
 }

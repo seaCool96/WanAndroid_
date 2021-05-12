@@ -2,7 +2,7 @@ package com.example.kotlin.net
 
 import com.example.kotlin.bean.BaseResult
 import com.example.kotlin.bean.HomeArticle
-import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -24,7 +24,14 @@ interface WanApi {
      * @param page
      * @return
      */
+//    @GET("/article/list/{page}/json")
+//    fun getArticleList(@Path("page") page: Int): Observable<BaseResult<List<HomeArticle>>>
+    //retrofit 2.6.2版本之前
+//    @GET("/article/list/{page}/json")
+//     fun getArticleList(@Path("page") page: Int=0): Deferred<BaseResult<List<HomeArticle>>>
+
+    //之后
     @GET("/article/list/{page}/json")
-    fun getArticleList(@Path("page") page: Int): Observable<BaseResult<HomeArticle>>
+     suspend fun getArticleList(@Path("page") page: Int=0): BaseResult<List<HomeArticle>>
 
 }
